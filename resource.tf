@@ -47,7 +47,7 @@ resource "aws_instance" "tf_t2_micro_instance" {
 }
 
  output "server_public_ip_output" {
-    value = aws_instance.tf_t2_micro_instance.public_ip
+    value = "public_ip_address = ${aws_instance.tf_t2_micro_instance.public_ip}"
  }
 
 
