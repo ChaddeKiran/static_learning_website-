@@ -6,7 +6,7 @@
 resource "aws_instance" "tf_t2_micro_instance" {
   ami                    = "ami-0f5ee92e2d63afc18"
   instance_type          = "t2.micro"
-  key_name               = "key-terraform-jenkins.pem" #aws_key_pair.tf_key.key_name
+  key_name               = aws_key_pair.tf_key1.key_name
   vpc_security_group_ids = [aws_security_group.tf_sg.id]
   subnet_id              = aws_subnet.tf_subnet_public.id
   # count = 1
@@ -17,7 +17,7 @@ resource "aws_instance" "tf_t2_micro_instance" {
   connection {
     type        = "ssh"
     user        = "ubuntu"              # Replace with the appropriate username for your EC2 instance
-    private_key = file("~/.ssh/id_rsa") # Replace with the path to your private key
+    private_key = file("${path.module}/id_rsa") # Replace with the path to your private key
     host        = self.public_ip
   }
 
