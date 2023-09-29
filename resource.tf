@@ -22,15 +22,15 @@ resource "aws_instance" "tf_t2_micro_instance" {
   }
 
   # File provisioner to copy a file from local to the remote EC2 instance
-  provisioner "file" {
-    source      = "Dockerfile" # Replace with the path to your local file
-    destination = "/home/ubuntu/Dockerfile"                                                             # Replace with the path on the remote instance
-  }
-
-    provisioner "file" {
-    source      = "app.py"
-    destination = "/home/ubuntu/app.py"                                                             # Replace with the path on the remote instance
-  }
+#  provisioner "file" {
+#    source      = "Dockerfile" # Replace with the path to your local file
+#    destination = "/home/ubuntu/Dockerfile"                                                             # Replace with the path on the remote instance
+#  }
+#
+#    provisioner "file" {
+#    source      = "app.py"
+#    destination = "/home/ubuntu/app.py"                                                             # Replace with the path on the remote instance
+#  }
 
   provisioner "remote-exec" {
     inline = [
@@ -39,8 +39,9 @@ resource "aws_instance" "tf_t2_micro_instance" {
       "sudo apt install docker.io -y",
       "sudo systemctl start docker",
       "sudo chmod 777 /var/run/docker.sock",
-      "sudo docker build -t my_flask_app /home/ubuntu", # Corrected Dockerfile path
-      "sudo docker run -d -p 82:80 my_flask_app:latest"               # Corrected Docker image name and port
+      "docker pull chaddekiran/flask-app-img:latest"
+      //"sudo docker build -t my_flask_app /home/ubuntu", # Corrected Dockerfile path
+      "sudo docker run -d -p 82:80 flask-app-img:latest"               # Corrected Docker image name and port
     ]
   }
 
