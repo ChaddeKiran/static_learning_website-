@@ -39,7 +39,7 @@ resource "aws_instance" "tf_t2_micro_instance" {
       "sudo apt install docker.io -y",
       "sudo systemctl start docker",
       "sudo chmod 777 /var/run/docker.sock",
-      "docker pull chaddekiran/flask-app-img:latest"
+      "docker pull chaddekiran/flask-app-img:latest",
       //"sudo docker build -t my_flask_app /home/ubuntu", # Corrected Dockerfile path
       "sudo docker run -d -p 82:80 flask-app-img:latest"               # Corrected Docker image name and port
     ]
