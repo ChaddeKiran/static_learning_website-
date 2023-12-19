@@ -7,7 +7,7 @@ app = Flask(__name__, static_url_path='/static')
 @app.route("/")
 def hello():
     #return "Hello, Terraform!"
-    #this is to check github actions
+    #this is to check github actions.
     return render_template("home.html")
 
 if __name__ == "__main__":
