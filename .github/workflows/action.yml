@@ -25,6 +25,6 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker buildx build -t demo:v2.2 .
-          docker tag demo:v2.2 ${{ secrets.DOCKER_USERNAME }}/image:v2.1
-          # docker push chaddekiran/image:v2.1
+          docker -tag demo:v2.1 ${{ secrets.DOCKER_USERNAME }}/image:v2.1
+          docker push chaddekiran/image:v2.1
 
