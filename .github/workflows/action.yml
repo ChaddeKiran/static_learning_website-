@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build Docker Image
-        run: docker build -t chaddekiran/demo:v1.1 .
+        run: docker build -t chaddekiran/demo:${{ github.run_id }} .
 
       - name: Push Docker Image
-        run: docker push chaddekiran/demo:v1.1
+        run: docker push chaddekiran/demo:${{ github.run_id }}
